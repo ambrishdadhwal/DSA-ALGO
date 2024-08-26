@@ -31,14 +31,20 @@ public class SinglyLinkedListAlgo {
         middleNode();
         list.toString();
 
-        checkIfListIsCircular();
+        // checkIfListIsCircular();
 
         // reverse a list
-        list.reverseList();
-        list.toString();
+        // list.reverseList();
+        // list.toString();
 
         // print reverse a list
-        list.printReverseListRecursive(list.getHead());
+        // list.printReverseListRecursive(list.getHead());
+
+        // checkIfListContainsLoop();
+
+        System.out.println("Adding node to tail of Singly Linked List....");
+        list.insertAtTail1(100);
+        list.toString();
 
     }
 
@@ -82,5 +88,10 @@ public class SinglyLinkedListAlgo {
     private static void searchRecursive(int index) {
         SinglyLinkedNode node = list.getRecursive(index);
         System.out.println("searchRecursive : Node present at index {" + index + "} is  --> {" + node.data + "}");
+    }
+
+    private static void checkIfListContainsLoop() {
+        boolean result = list.detechLoop();
+        System.out.println("\n\nIs List contain loop : " + (result ? "YES" : "NO"));
     }
 }

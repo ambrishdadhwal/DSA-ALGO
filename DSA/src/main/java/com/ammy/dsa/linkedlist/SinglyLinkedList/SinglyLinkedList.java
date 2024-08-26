@@ -1,6 +1,10 @@
 package com.ammy.dsa.linkedlist.SinglyLinkedList;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Stack;
+
+import com.ammy.dsa.linkedlist.DoublyLinkedList.DoublyLinkedNode;
 
 public class SinglyLinkedList {
 
@@ -68,6 +72,17 @@ public class SinglyLinkedList {
             node = node.next;
         }
         node.next = newNode;
+        totalNodes++;
+    }
+
+    public void insertAtTail1(Object data) {
+        SinglyLinkedNode newNode = new SinglyLinkedNode();
+        SinglyLinkedNode node = head;
+        newNode.data = data;
+        SinglyLinkedNode p, q;
+        for (p = node; (q = p.next) != null; p = q)
+            ;
+        p.next = newNode;
         totalNodes++;
     }
 
@@ -143,6 +158,20 @@ public class SinglyLinkedList {
         totalNodes--;
     }
 
+    public SinglyLinkedNode removeLast1() {
+        SinglyLinkedNode p = head, q = null, next = head.next;
+        if (next == null) {
+            head = null;
+            return p;
+        }
+        while ((next = p.next) != null) {
+            q = p; // 1, 2, 3, 4
+            p = next; // 2, 3, 4, 5
+        }
+        q.next = null;
+        return p;
+    }
+
     public SinglyLinkedNode removeFirst() {
         head = head.next;
         totalNodes--;
@@ -191,15 +220,29 @@ public class SinglyLinkedList {
     }
 
     public void printReverseListRecursive(SinglyLinkedNode node) {
-        if(node == null){
+        if (node == null) {
             return;
         }
         printReverseListRecursive(node.next);
-        System.out.print(node.data+" -> ");
+        System.out.print(node.data + " -> ");
     }
 
-    public SinglyLinkedNode getHead()
-    {
+    public SinglyLinkedNode getHead() {
         return head;
+    }
+
+    public boolean detechLoop() {
+        boolean result = false;
+        Set<SinglyLinkedNode> set = new HashSet<>();
+        SinglyLinkedNode node = head;
+        while (node != null) {
+            if (set.contains(node)) {
+                result = true;
+                break;
+            }
+            set.add(node);
+            node = node.next;
+        }
+        return result;
     }
 }

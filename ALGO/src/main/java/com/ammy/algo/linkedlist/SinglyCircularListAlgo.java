@@ -16,6 +16,8 @@ public class SinglyCircularListAlgo {
         System.out.println("Print Circular Linked List recursivly...");
         list.recursivePrint(list.getHead());
 
+        checkIfListContainsLoop();
+
     }
 
     private static void checkIfListIsCircular() {
@@ -32,8 +34,9 @@ public class SinglyCircularListAlgo {
         list.toString();
     }
 
-    public void ifListIsCircularOrNot() {
-
+    private static void checkIfListContainsLoop() {
+        boolean result = list.detechLoop();
+        System.out.println("Is List contain loop : " + (result ? "YES" : "NO"));
     }
 
 }

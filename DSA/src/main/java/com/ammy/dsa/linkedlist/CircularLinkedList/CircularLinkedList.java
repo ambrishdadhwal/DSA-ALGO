@@ -1,5 +1,7 @@
 package com.ammy.dsa.linkedlist.CircularLinkedList;
 
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Stack;
 
 import com.ammy.dsa.linkedlist.DoublyLinkedList.DoublyLinkedNode;
@@ -193,5 +195,20 @@ public class CircularLinkedList {
 
         System.out.print(node.data + " -> ");
         recursivePrint(node.next);
+    }
+
+    public boolean detechLoop() {
+        boolean result = false;
+        Set<SinglyLinkedNode> set = new HashSet<>();
+        SinglyLinkedNode node = head;
+        while (node != null) {
+            if (set.contains(node)) {
+                result = true;
+                break;
+            }
+            set.add(node);
+            node = node.next;
+        }
+        return result;
     }
 }
